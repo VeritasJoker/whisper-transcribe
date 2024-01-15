@@ -1,7 +1,7 @@
 
 CMD := echo
-CMD := sbatch submit.sh
 CMD := python
+CMD := sbatch submit.sh
 
 SID := 500
 CONV_IDX := 798_30s_test
@@ -9,14 +9,15 @@ CONV_IDX := 798_30s_test
 SID := 661
 CONV_IDX := Podcast
 
-# SID := 625
-# CONV_IDX := $(shell seq 0 53)
+SID := 625
+CONV_IDX := $(shell seq 0 53)
 
-# SID := 676
-# CONV_IDX := $(shell seq 37 38)
+SID := 676
+CONV_IDX := $(shell seq 0 77)
 
-# SID := 7170
-# CONV_IDX := $(shell seq 1 24)
+SID := 7170
+SID := 717
+CONV_IDX := $(shell seq 0 23)
 
 # SID := 798
 # CONV_IDX := $(shell seq 0 14)
@@ -39,6 +40,12 @@ whisperx-transcribe:
 			--model large-v2 \
 			--conv-idx $$conv; \
 	done;
+
+
+whisperx-paper:
+	$(CMD) scripts/whisperx_paper_trans.py \
+		--sid $(SID) \
+		--model large-v2 \
 
 
 audio-erp:
